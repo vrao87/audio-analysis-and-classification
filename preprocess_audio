@@ -1,0 +1,24 @@
+import pyaudio
+import wave
+import sounddevice as sd
+import librosa
+import librosa.display
+from matplotlib import pyplot as plt
+import numpy as np
+
+raw = []
+# np.set_printoptions(threshold=np.inf)
+X, sr = librosa.load("100Hz_44100Hz_16bit_05sec.wav", duration=0.1)
+raw.append(X)
+raw_sound = np.array(X)
+f = open('output.txt','w')
+f.write(str(raw_sound[0:]))
+
+#print(raw_sound)
+
+# fig = plt.figure(figsize=(25,60), dpi = 900)
+plt.subplot(1, 1, 1)
+librosa.display.waveplot(raw_sound, sr=11025)
+
+plt.suptitle("Figure 1: Waveplot",x=0.5, y=0.915,fontsize=18)
+plt.show()
